@@ -1,1 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Zepto Product & Inventory SQL Analysis</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+
+            <div class="logo">
+                Zepto SQL Analysis
+            </div>
+
+            <div class="nav-links">
+                <a href="#overview">Overview</a>
+                <a href="#dataset">Dataset</a>
+                <a href="#schema">Schema</a>
+                <a href="#questions">Questions</a>
+                <a href="#analysis">Analysis</a>
+                <a href="#insights">Insights</a>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <p class="hero-tag">
+                MYSQL • DATA ANALYSIS • SQL
+            </p>
+
+            <h1>
+                Zepto Product &<br>
+                Inventory SQL Analysis
+            </h1>
+
+            <p class="hero-description">
+                Exploring product pricing, discounts, inventory availability,
+                and category-level patterns using MySQL.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#analysis" class="btn primary">
+                    Explore Analysis
+                </a>
+
+                <a href="zepto_analysis.sql" class="btn secondary">
+                    View SQL
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Overview -->
+    <section id="overview" class="section">
+
+        <div class="section-title">
+            <span>01</span>
+            <h2>Project Overview</h2>
+        </div>
+
+        <p class="section-text">
+            This project analyzes a Zepto product catalog dataset using
+            MySQL to understand product discounts, inventory availability,
+            category-level stock conditions, and price reductions.
+        </p>
+
+        <p class="section-text">
+            The analysis covers data cleaning, validation, transformation,
+            exploratory SQL analysis, and advanced SQL techniques including
+            CTEs, subqueries, aggregations, and window functions.
+        </p>
+
+    </section>
+
+
+    <!-- Dataset -->
+    <section id="dataset" class="section light-section">
+
+        <div class="section-title">
+            <span>02</span>
+            <h2>Dataset</h2>
+        </div>
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <h3>3,728</h3>
+                <p>Raw Records</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>3,726</h3>
+                <p>Final Records</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>453</h3>
+                <p>Out-of-Stock Products</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>9</h3>
+                <p>Dataset Columns</p>
+            </div>
+
+        </div>
+
+
+        <h3 class="subheading">
+            Dataset Fields
+        </h3>
+
+        <div class="tags">
+
+            <span>Category</span>
+            <span>Product Name</span>
+            <span>MRP</span>
+            <span>Discount %</span>
+            <span>Available Quantity</span>
+            <span>Selling Price</span>
+            <span>Weight</span>
+            <span>Out of Stock</span>
+            <span>Quantity</span>
+
+        </div>
+
+    </section>
+
+
+    <!-- Data Cleaning -->
+    <section class="section">
+
+        <div class="section-title">
+            <span>03</span>
+            <h2>Data Cleaning</h2>
+        </div>
+
+        <div class="process">
+
+            <div class="process-step">
+                <div class="number">01</div>
+                <h3>Staging</h3>
+                <p>
+                    Loaded the raw dataset into a MySQL staging table
+                    before performing transformations.
+                </p>
+            </div>
+
+            <div class="process-step">
+                <div class="number">02</div>
+                <h3>Quality Checks</h3>
+                <p>
+                    Checked missing values, duplicate records,
+                    record counts, and price anomalies.
+                </p>
+            </div>
+
+            <div class="process-step">
+                <div class="number">03</div>
+                <h3>Transformation</h3>
+                <p>
+                    Used TRIM(), CASE expressions and DISTINCT
+                    to clean and transform the data.
+                </p>
+            </div>
+
+            <div class="process-step">
+                <div class="number">04</div>
+                <h3>Final Table</h3>
+                <p>
+                    Created the final analytical table containing
+                    3,726 cleaned records.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Schema -->
+    <section id="schema" class="section dark-section">
+
+        <div class="section-title">
+            <span>04</span>
+            <h2>Database Schema</h2>
+        </div>
+
+        <div class="schema-box">
+
+            <div class="schema-header">
+                <span>zepto_products</span>
+                <span>Analytical Table</span>
+            </div>
+
+            <div class="schema-row">
+                <strong>prod_id</strong>
+                <span>INT — Primary Key</span>
+            </div>
+
+            <div class="schema-row">
+                <strong>Category</strong>
+                <span>VARCHAR</span>
+            </div>
+
+            <div class="schema-row">
+                <strong>name</strong>
+                <span>VARCHAR</span>
+            </div>
+
+            <div class="schema-row">
+                <strong>mrp</strong>
+                <span>INT</span>
+            </div>
+
+            <div class="schema-row">
+                <strong>discountPercent</strong>
+                <span>INT</span>
+            </div>
+
+            <div class="schema-row">
+                <strong>availableQuantity</strong>
+                <span>INT</span>
+            </div>
+
+            <div class="schema-row">
+                <strong>discountedSellingPrice</strong>
+                <span>INT</span>
+            </div>
+
+            <div class="schema-row">
+                <strong>weightInGms</strong>
+                <span>INT</span>
+            </div>
+
+            <div class="schema-row">
+                <strong>outOfStock</strong>
+                <span>BOOLEAN</span>
+            </div>
+
+            <div class="schema-row">
+                <strong>quantity</strong>
+                <span>INT</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Business Questions -->
+    <section id="questions" class="section">
+
+        <div class="section-title">
+            <span>05</span>
+            <h2>Business Questions</h2>
+        </div>
+
+        <p class="section-text">
+            Instead of simply running SQL queries, the analysis was
+            structured around practical business questions.
+        </p>
+
+        <div class="question-grid">
+
+            <div class="question-card">
+                <span>01</span>
+                <h3>
+                    How are products distributed across discount bands?
+                </h3>
+            </div>
+
+            <div class="question-card">
+                <span>02</span>
+                <h3>
+                    Which categories have the highest out-of-stock rates?
+                </h3>
+            </div>
+
+            <div class="question-card">
+                <span>03</span>
+                <h3>
+                    Which products have the highest discounts within each category?
+                </h3>
+            </div>
+
+            <div class="question-card">
+                <span>04</span>
+                <h3>
+                    Which products have the largest absolute price reductions?
+                </h3>
+            </div>
+
+            <div class="question-card">
+                <span>05</span>
+                <h3>
+                    Which categories have discounts above the overall average?
+                </h3>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Analysis -->
+    <section id="analysis" class="section light-section">
+
+        <div class="section-title">
+            <span>06</span>
+            <h2>SQL Analysis & Results</h2>
+        </div>
+
+
+        <!-- Discount -->
+        <div class="analysis-card">
+
+            <div class="analysis-text">
+
+                <p class="analysis-number">
+                    ANALYSIS 01
+                </p>
+
+                <h3>
+                    Discount Distribution
+                </h3>
+
+                <p>
+                    Products were grouped into discount bands using
+                    SQL CASE expressions to understand how discounts
+                    are distributed across the catalog.
+                </p>
+
+            </div>
+
+            <img
+                src="screenshots/01_discount_analysis.png"
+                alt="Discount Analysis"
+            >
+
+        </div>
+
+
+        <!-- Stock -->
+        <div class="analysis-card reverse">
+
+            <div class="analysis-text">
+
+                <p class="analysis-number">
+                    ANALYSIS 02
+                </p>
+
+                <h3>
+                    Category Stock Analysis
+                </h3>
+
+                <p>
+                    Category-level aggregation was used to calculate
+                    total products, out-of-stock products, and
+                    out-of-stock percentages.
+                </p>
+
+            </div>
+
+            <img
+                src="screenshots/02_category_stock_analysis.png"
+                alt="Category Stock Analysis"
+            >
+
+        </div>
+
+
+        <!-- Top Discount -->
+        <div class="analysis-card">
+
+            <div class="analysis-text">
+
+                <p class="analysis-number">
+                    ANALYSIS 03
+                </p>
+
+                <h3>
+                    Top Discounted Products
+                </h3>
+
+                <p>
+                    Window functions were used to rank products
+                    within each category based on discount percentage.
+                </p>
+
+            </div>
+
+            <img
+                src="screenshots/03_top_discounted_products.png"
+                alt="Top Discounted Products"
+            >
+
+        </div>
+
+
+        <!-- Price Reduction -->
+        <div class="analysis-card reverse">
+
+            <div class="analysis-text">
+
+                <p class="analysis-number">
+                    ANALYSIS 04
+                </p>
+
+                <h3>
+                    Price Reduction Analysis
+                </h3>
+
+                <p>
+                    The absolute difference between MRP and selling
+                    price was calculated to identify products with
+                    the largest price reductions.
+                </p>
+
+            </div>
+
+            <img
+                src="screenshots/04_price_reduction_analysis.png"
+                alt="Price Reduction Analysis"
+            >
+
+        </div>
+
+    </section>
+
+
+    <!-- Insights -->
+    <section id="insights" class="section">
+
+        <div class="section-title">
+            <span>07</span>
+            <h2>Key Insights</h2>
+        </div>
+
+        <div class="insight-grid">
+
+            <div class="insight-card">
+                <span>01</span>
+                <h3>Discount Patterns</h3>
+                <p>
+                    Most products fall into the lower discount
+                    bands, while highly discounted products form
+                    a much smaller portion of the catalog.
+                </p>
+            </div>
+
+            <div class="insight-card">
+                <span>02</span>
+                <h3>Inventory Availability</h3>
+                <p>
+                    Out-of-stock rates vary considerably across
+                    product categories, highlighting differences
+                    in inventory availability.
+                </p>
+            </div>
+
+            <div class="insight-card">
+                <span>03</span>
+                <h3>Category Rankings</h3>
+                <p>
+                    Window functions make it possible to identify
+                    the highest-discounted products within each
+                    category while preserving individual records.
+                </p>
+            </div>
+
+            <div class="insight-card">
+                <span>04</span>
+                <h3>Price Reductions</h3>
+                <p>
+                    Comparing MRP with discounted selling price
+                    highlights products with the largest absolute
+                    price reductions.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SQL Skills -->
+    <section class="section dark-section">
+
+        <div class="section-title">
+            <span>08</span>
+            <h2>SQL Skills Demonstrated</h2>
+        </div>
+
+        <div class="skills-grid">
+
+            <span>SELECT</span>
+            <span>WHERE</span>
+            <span>GROUP BY</span>
+            <span>HAVING</span>
+            <span>CASE</span>
+            <span>JOIN</span>
+            <span>CTE</span>
+            <span>Subqueries</span>
+            <span>Aggregations</span>
+            <span>RANK()</span>
+            <span>ROW_NUMBER()</span>
+            <span>PARTITION BY</span>
+            <span>Data Cleaning</span>
+            <span>Data Validation</span>
+
+        </div>
+
+    </section>
+
+
+    <!-- Project Links -->
+    <section class="section final-section">
+
+        <h2>
+            Explore the Project
+        </h2>
+
+        <p>
+            View the complete SQL analysis and project source code.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a
+                href="zepto_analysis.sql"
+                class="btn primary"
+            >
+                View SQL File
+            </a>
+
+            <a
+                href="https://github.com/Balahari29/zepto-sql-analysis"
+                target="_blank"
+                class="btn secondary"
+            >
+                GitHub Repository
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            Zepto Product & Inventory SQL Analysis
+        </p>
+
+        <p>
+            Created by
+            <strong>Bala Hariharan B</strong>
+        </p>
+
+        <p>
+            SQL • Python • Power BI • Data Analytics
+        </p>
+
+    </footer>
+
+
+</body>
+</html>
