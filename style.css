@@ -1,1 +1,567 @@
+/* ================================
+   GLOBAL
+================================ */
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0b0f19;
+    color: #e8edf7;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+
+/* ================================
+   NAVBAR
+================================ */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(11, 15, 25, 0.95);
+    border-bottom: 1px solid #20283a;
+    backdrop-filter: blur(10px);
+}
+
+.nav-container {
+    max-width: 1150px;
+    margin: auto;
+    padding: 18px 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    font-size: 14px;
+    color: #aeb8ca;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ffffff;
+}
+
+
+/* ================================
+   HERO
+================================ */
+
+.hero {
+    min-height: 88vh;
+
+    display: flex;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(66, 133, 244, 0.18),
+            transparent 35%
+        ),
+        #0b0f19;
+}
+
+.hero-content {
+    max-width: 1150px;
+    width: 100%;
+    margin: auto;
+    padding: 80px 25px;
+}
+
+.hero-tag {
+    color: #6ea8ff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(45px, 7vw, 82px);
+    line-height: 1.02;
+    letter-spacing: -3px;
+    max-width: 950px;
+    margin-bottom: 25px;
+}
+
+.hero-description {
+    max-width: 650px;
+    font-size: 19px;
+    color: #aeb8ca;
+    margin-bottom: 35px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    padding: 13px 22px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn.primary {
+    background: #ffffff;
+    color: #0b0f19;
+}
+
+.btn.primary:hover {
+    transform: translateY(-2px);
+}
+
+.btn.secondary {
+    border: 1px solid #39445b;
+    color: #ffffff;
+}
+
+.btn.secondary:hover {
+    background: #161d2b;
+}
+
+
+/* ================================
+   SECTIONS
+================================ */
+
+.section {
+    max-width: 1150px;
+    margin: auto;
+    padding: 90px 25px;
+}
+
+.light-section {
+    max-width: none;
+    padding-left: max(25px, calc((100% - 1100px) / 2));
+    padding-right: max(25px, calc((100% - 1100px) / 2));
+    background: #101622;
+}
+
+.dark-section {
+    max-width: none;
+    padding-left: max(25px, calc((100% - 1100px) / 2));
+    padding-right: max(25px, calc((100% - 1100px) / 2));
+    background: #080c14;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.section-title span {
+    font-size: 13px;
+    color: #6ea8ff;
+    font-weight: 700;
+}
+
+.section-title h2 {
+    font-size: 34px;
+    letter-spacing: -1px;
+}
+
+.section-text {
+    max-width: 850px;
+    color: #aeb8ca;
+    font-size: 17px;
+    margin-bottom: 15px;
+}
+
+.subheading {
+    margin-top: 45px;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+
+/* ================================
+   STAT CARDS
+================================ */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.stat-card {
+    padding: 28px;
+    background: #171e2c;
+    border: 1px solid #283247;
+    border-radius: 12px;
+}
+
+.stat-card h3 {
+    font-size: 34px;
+    margin-bottom: 5px;
+}
+
+.stat-card p {
+    color: #8f9bb0;
+    font-size: 14px;
+}
+
+
+/* ================================
+   TAGS
+================================ */
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tags span,
+.skills-grid span {
+    padding: 8px 13px;
+    border: 1px solid #303b51;
+    border-radius: 20px;
+    color: #b9c4d6;
+    font-size: 13px;
+}
+
+
+/* ================================
+   DATA CLEANING PROCESS
+================================ */
+
+.process {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.process-step {
+    padding: 25px;
+    border-left: 2px solid #34445f;
+}
+
+.number {
+    color: #6ea8ff;
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.process-step h3 {
+    margin-bottom: 10px;
+}
+
+.process-step p {
+    color: #8f9bb0;
+    font-size: 14px;
+}
+
+
+/* ================================
+   DATABASE SCHEMA
+================================ */
+
+.schema-box {
+    max-width: 750px;
+    border: 1px solid #283247;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #101622;
+}
+
+.schema-header {
+    padding: 18px 22px;
+    background: #171e2c;
+
+    display: flex;
+    justify-content: space-between;
+
+    font-weight: 700;
+}
+
+.schema-header span:last-child {
+    color: #718099;
+    font-size: 13px;
+}
+
+.schema-row {
+    padding: 13px 22px;
+    border-top: 1px solid #232c3d;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.schema-row span {
+    color: #7f8ca2;
+    font-size: 14px;
+}
+
+
+/* ================================
+   BUSINESS QUESTIONS
+================================ */
+
+.question-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.question-card {
+    padding: 25px;
+
+    border: 1px solid #283247;
+    border-radius: 12px;
+
+    transition: 0.3s;
+}
+
+.question-card:hover {
+    transform: translateY(-3px);
+    border-color: #52698e;
+}
+
+.question-card span {
+    color: #6ea8ff;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.question-card h3 {
+    margin-top: 12px;
+    font-size: 18px;
+}
+
+
+/* ================================
+   ANALYSIS CARDS
+================================ */
+
+.analysis-card {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 45px;
+
+    align-items: center;
+
+    padding: 35px 0;
+
+    border-bottom: 1px solid #283247;
+}
+
+.analysis-card.reverse {
+    grid-template-columns: 1.2fr 0.8fr;
+}
+
+.analysis-card.reverse .analysis-text {
+    order: 2;
+}
+
+.analysis-card.reverse img {
+    order: 1;
+}
+
+.analysis-card img {
+    border-radius: 10px;
+    border: 1px solid #303b51;
+}
+
+.analysis-number {
+    color: #6ea8ff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.analysis-text h3 {
+    font-size: 28px;
+    margin: 10px 0 15px;
+}
+
+.analysis-text p {
+    color: #8f9bb0;
+}
+
+
+/* ================================
+   INSIGHTS
+================================ */
+
+.insight-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.insight-card {
+    padding: 30px;
+
+    background: #111824;
+    border: 1px solid #283247;
+    border-radius: 12px;
+}
+
+.insight-card span {
+    color: #6ea8ff;
+    font-weight: 700;
+}
+
+.insight-card h3 {
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+.insight-card p {
+    color: #8f9bb0;
+}
+
+
+/* ================================
+   SQL SKILLS
+================================ */
+
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+
+/* ================================
+   FINAL SECTION
+================================ */
+
+.final-section {
+    text-align: center;
+}
+
+.final-section h2 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.final-section p {
+    color: #8f9bb0;
+    margin-bottom: 25px;
+}
+
+.final-section .hero-buttons {
+    justify-content: center;
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+footer {
+    text-align: center;
+    padding: 45px 20px;
+
+    border-top: 1px solid #20283a;
+
+    color: #718099;
+    font-size: 13px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .process {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .analysis-card,
+    .analysis-card.reverse {
+        grid-template-columns: 1fr;
+    }
+
+    .analysis-card.reverse .analysis-text,
+    .analysis-card.reverse img {
+        order: initial;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .hero h1 {
+        font-size: 45px;
+        letter-spacing: -2px;
+    }
+
+    .hero-description {
+        font-size: 16px;
+    }
+
+    .section {
+        padding: 60px 20px;
+    }
+
+    .stats-grid,
+    .process,
+    .question-grid,
+    .insight-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title h2 {
+        font-size: 28px;
+    }
+
+}
